@@ -18,6 +18,7 @@ jobs:
     runs-on: macOS-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      AEMET_API_KEY: ${{ secrets.AEMET_API_KEY }}
     steps:
       - uses: actions/checkout@v2
 
