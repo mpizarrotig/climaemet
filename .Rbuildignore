@@ -6,3 +6,6 @@
 ^pkgdown$
 ^\.github$
 ^_pkgdown\.yml$
+^climaemet\.Rcheck$
+^climaemet.*\.tar\.gz$
+^climaemet.*\.tgz$

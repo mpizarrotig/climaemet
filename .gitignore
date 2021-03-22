@@ -3,3 +3,6 @@
 .RData
 .Ruserdata
 climaemet.Rproj
+climaemet.Rcheck/
+climaemet*.tar.gz
+climaemet*.tgz

@@ -33,7 +33,8 @@ Imports:
 Suggests: 
     knitr,
     rmarkdown,
-    learnr
+    learnr,
+    testthat (>= 3.0.0)
 NeedsCompilation: no
 Repository: CRAN
 URL: https://mpizarrotig.github.io/climaemet, https://github.com/mpizarrotig/climaemet
@@ -45,3 +46,4 @@ Collate:
     'climaemet_main.R'
     'climaemet_news.R'
     'utils-pipe.R'
+Config/testthat/edition: 3
