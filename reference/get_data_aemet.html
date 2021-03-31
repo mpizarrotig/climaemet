@@ -55,7 +55,7 @@
 <link href="../ropenspain.css" rel="stylesheet">
 
 <meta property="og:title" content="Client tool for AEMET API — get_data_aemet" />
-<meta property="og:description" content="Client tool to get data from AEMET and convert json to data.frame." />
+<meta property="og:description" content="Client tool to get data and metadata from AEMET and convert json to tibble." />
 <meta property="og:image" content="https://ropenspain.github.io/climaemet/logo.png" />
 
 
@@ -85,7 +85,7 @@
       <i class="fa fa-align-justify"></i>
       </button>
       <span class="navbar-brand" id="ROS-navbar-brand">
-      <a class="navbar-link ROS-black" href="../index.html"><img src="../logo.png" alt="climaemet-logo" id="ROS-navbar-logo">climaemet</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+      <a class="navbar-link ROS-black" href="../index.html"><img src="../logo.png" alt="climaemet-logo" id="ROS-navbar-logo">climaemet</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0.9000</span>
       </span>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -103,7 +103,7 @@
   <a href="../news/index.html">Changelog</a>
 </li>
         <li>
-  <a href="https://github.com/mpizarrotig/climaemet/">
+  <a href="https://github.com/rOpenSpain/climaemet/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -123,41 +123,85 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Client tool for AEMET API</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mpizarrotig/climaemet/blob/master/R/aemet_tools.R'><code>R/aemet_tools.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/rOpenSpain/climaemet/blob/master/R/aemet_api_query.R'><code>R/aemet_api_query.R</code></a></small>
     <div class="hidden name"><code>get_data_aemet.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Client tool to get data from AEMET and convert json to data.frame.</p>
+    <p>Client tool to get data and metadata from AEMET and convert json to tibble.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_data_aemet</span><span class='op'>(</span><span class='va'>apidest</span>, <span class='va'>apikey</span>, verbose <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>get_data_aemet</span><span class='op'>(</span><span class='va'>apidest</span>, apikey <span class='op'>=</span> <span class='cn'>NULL</span>, verbose <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+
+<span class='fu'>get_metadata_aemet</span><span class='op'>(</span><span class='va'>apidest</span>, apikey <span class='op'>=</span> <span class='cn'>NULL</span>, verbose <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>apidest</th>
-      <td><p>Character string as destination URL. See <a href='https://opendata.aemet.es/dist/index.html'>https://opendata.aemet.es/dist/index.html</a>.</p></td>
+      <td><p>Character string as destination URL. See
+<a href='https://opendata.aemet.es/dist/index.html'>https://opendata.aemet.es/dist/index.html</a>.</p></td>
     </tr>
     <tr>
       <th>apikey</th>
-      <td><p>Character string as personal API key (see <a href='https://opendata.aemet.es/centrodedescargas/obtencionAPIKey'>https://opendata.aemet.es/centrodedescargas/obtencionAPIKey</a>).</p></td>
+      <td><p>Character string as personal API key. It can be set
+on the environment variable AEMET_API_KEY, see <code><a href='aemet_api_key.html'>aemet_api_key()</a></code>.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>True/False. Provides information about the flow of
-information between the client and server</p></td>
+      <td><p>Logical TRUE/FALSE. Provides information about the flow of
+information between the client and server.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p><a href='https://opendata.aemet.es/dist/index.html'>https://opendata.aemet.es/dist/index.html</a></p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a data.frame.</p>
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+    <p>A tibble or an empty tibble if no valid results from the API.</p>
 
-    <p>Code modified from project https://github.com/vegmod/meteoland</p>
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># Run this example only if AEMET_API_KEY is detected</span>
 
+<span class='va'>url</span> <span class='op'>&lt;-</span> <span class='st'>"/api/valores/climatologicos/inventarioestaciones/todasestaciones"</span>
+
+<span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='aemet_detect_api_key.html'>aemet_detect_api_key</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'>get_data_aemet</span><span class='op'>(</span><span class='va'>url</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 291 x 7</span><span>
+#&gt;    latitud provincia altitud indicativo nombre                 indsinop longitud
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> 413515N BARCELONA 74      0252D      ARENYS DE MAR          </span><span style='color: #949494;'>"</span><span>08186</span><span style='color: #949494;'>"</span><span>  023224E 
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> 411734N BARCELONA 4       0076       BARCELONA AEROPUERTO   </span><span style='color: #949494;'>"</span><span>08181</span><span style='color: #949494;'>"</span><span>  020412E 
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> 412506N BARCELONA 408     0200E      BARCELONA, FABRA       </span><span style='color: #949494;'>""</span><span>       020727E 
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> 412326N BARCELONA 6       0201D      BARCELONA              </span><span style='color: #949494;'>"</span><span>08180</span><span style='color: #949494;'>"</span><span>  021200E 
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> 414312N BARCELONA 291     0149X      MANRESA                </span><span style='color: #949494;'>"</span><span>08174</span><span style='color: #949494;'>"</span><span>  015025E 
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> 413125N BARCELONA 146     0229I      SABADELL AEROPUERTO    </span><span style='color: #949494;'>"</span><span>08192</span><span style='color: #949494;'>"</span><span>  020611E 
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> 413903N BARCELONA 40      0255B      SANTA SUSANNA          </span><span style='color: #949494;'>"</span><span>08188</span><span style='color: #949494;'>"</span><span>  024149E 
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> 415442N GIRONA    143     0367       GIRONA AEROPUERTO      </span><span style='color: #949494;'>"</span><span>08184</span><span style='color: #949494;'>"</span><span>  024548E 
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> 415848N GIRONA    95      0370B      GIRONA, ANTIC INSTITUT </span><span style='color: #949494;'>""</span><span>       024931E 
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> 420616N GIRONA    157     0372C      PORQUERES              </span><span style='color: #949494;'>"</span><span>08120</span><span style='color: #949494;'>"</span><span>  024549E 
+#&gt; </span><span style='color: #949494;'># … with 281 more rows</span><span></div><div class='input'>
+<span class='co'># Metadata</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='aemet_detect_api_key.html'>aemet_detect_api_key</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'>get_metadata_aemet</span><span class='op'>(</span><span class='va'>url</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 291 x 7</span><span>
+#&gt;    latitud provincia altitud indicativo nombre                 indsinop longitud
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> 413515N BARCELONA 74      0252D      ARENYS DE MAR          </span><span style='color: #949494;'>"</span><span>08186</span><span style='color: #949494;'>"</span><span>  023224E 
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> 411734N BARCELONA 4       0076       BARCELONA AEROPUERTO   </span><span style='color: #949494;'>"</span><span>08181</span><span style='color: #949494;'>"</span><span>  020412E 
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> 412506N BARCELONA 408     0200E      BARCELONA, FABRA       </span><span style='color: #949494;'>""</span><span>       020727E 
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> 412326N BARCELONA 6       0201D      BARCELONA              </span><span style='color: #949494;'>"</span><span>08180</span><span style='color: #949494;'>"</span><span>  021200E 
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> 414312N BARCELONA 291     0149X      MANRESA                </span><span style='color: #949494;'>"</span><span>08174</span><span style='color: #949494;'>"</span><span>  015025E 
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> 413125N BARCELONA 146     0229I      SABADELL AEROPUERTO    </span><span style='color: #949494;'>"</span><span>08192</span><span style='color: #949494;'>"</span><span>  020611E 
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> 413903N BARCELONA 40      0255B      SANTA SUSANNA          </span><span style='color: #949494;'>"</span><span>08188</span><span style='color: #949494;'>"</span><span>  024149E 
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> 415442N GIRONA    143     0367       GIRONA AEROPUERTO      </span><span style='color: #949494;'>"</span><span>08184</span><span style='color: #949494;'>"</span><span>  024548E 
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> 415848N GIRONA    95      0370B      GIRONA, ANTIC INSTITUT </span><span style='color: #949494;'>""</span><span>       024931E 
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> 420616N GIRONA    157     0372C      PORQUERES              </span><span style='color: #949494;'>"</span><span>08120</span><span style='color: #949494;'>"</span><span>  024549E 
+#&gt; </span><span style='color: #949494;'># … with 281 more rows</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -172,7 +216,7 @@ information between the client and server</p></td>
 	<div class="container">
 		<div class="col-md-3 col-sm-6 col-md-offset-1">
 			<h4 data-toc-skip>About climaemet</h4>
-			Developed by <a href='https://github.com/mpizarrotig'>Manuel Pizarro</a>, part of the <span class="ROS-light">rOpenSpain</span> project.
+			Developed by <a href='https://github.com/mpizarrotig'>Manuel Pizarro</a>, Diego Hernangómez, part of the <span class="ROS-light">rOpenSpain</span> project.
 			<hr class="hidden-md hidden-lg hidden-sm">
 		</div>
 		<div class="col-md-3 col-sm-6 col-md-offset-4">

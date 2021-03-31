@@ -55,7 +55,9 @@
 <link href="../ropenspain.css" rel="stylesheet">
 
 <meta property="og:title" content="Walter &amp; Lieth climatic diagram for a time period — climatogram_period" />
-<meta property="og:description" content="Plot of a Walter &amp;amp; Lieth climatic diagram from monthly climatology data for a station. This climatogram are great for showing a summary of climate conditions for a place over a specific time period." />
+<meta property="og:description" content="Plot of a Walter &amp;amp; Lieth climatic diagram from monthly climatology data for
+a station. This climatogram are great for showing a summary of climate
+conditions for a place over a specific time period." />
 <meta property="og:image" content="https://ropenspain.github.io/climaemet/logo.png" />
 
 
@@ -85,7 +87,7 @@
       <i class="fa fa-align-justify"></i>
       </button>
       <span class="navbar-brand" id="ROS-navbar-brand">
-      <a class="navbar-link ROS-black" href="../index.html"><img src="../logo.png" alt="climaemet-logo" id="ROS-navbar-logo">climaemet</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+      <a class="navbar-link ROS-black" href="../index.html"><img src="../logo.png" alt="climaemet-logo" id="ROS-navbar-logo">climaemet</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0.9000</span>
       </span>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -103,7 +105,7 @@
   <a href="../news/index.html">Changelog</a>
 </li>
         <li>
-  <a href="https://github.com/mpizarrotig/climaemet/">
+  <a href="https://github.com/rOpenSpain/climaemet/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -123,20 +125,25 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Walter &amp; Lieth climatic diagram for a time period</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mpizarrotig/climaemet/blob/master/R/climaemet_main.R'><code>R/climaemet_main.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/rOpenSpain/climaemet/blob/master/R/climatogram.R'><code>R/climatogram.R</code></a></small>
     <div class="hidden name"><code>climatogram_period.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Plot of a Walter &amp; Lieth climatic diagram from monthly climatology data for a station. This climatogram are great for showing a summary of climate conditions for a place over a specific time period.</p>
+    <p>Plot of a Walter &amp; Lieth climatic diagram from monthly climatology data for
+a station. This climatogram are great for showing a summary of climate
+conditions for a place over a specific time period.</p>
     </div>
 
     <pre class="usage"><span class='fu'>climatogram_period</span><span class='op'>(</span>
-  <span class='va'>station</span>,
-  <span class='va'>apikey</span>,
+  station <span class='op'>=</span> <span class='cn'>NULL</span>,
+  apikey <span class='op'>=</span> <span class='cn'>NULL</span>,
   start <span class='op'>=</span> <span class='fl'>1990</span>,
   end <span class='op'>=</span> <span class='fl'>2020</span>,
-  labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"en"</span>, <span class='st'>"es"</span>, <span class='st'>""</span><span class='op'>)</span>
+  labels <span class='op'>=</span> <span class='st'>"en"</span>,
+  verbose <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  ggplot2 <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  <span class='va'>...</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -144,11 +151,13 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>station</th>
-      <td><p>Character string as station identifier code (see <code><a href='aemet_stations.html'>aemet_stations</a></code>).</p></td>
+      <td><p>Character string as station identifier code
+(see <code><a href='aemet_stations.html'>aemet_stations()</a></code>).</p></td>
     </tr>
     <tr>
       <th>apikey</th>
-      <td><p>Character string as personal API key (see <a href='https://opendata.aemet.es/centrodedescargas/obtencionAPIKey'>https://opendata.aemet.es/centrodedescargas/obtencionAPIKey</a>).</p></td>
+      <td><p>Character string as personal API key. It can be set
+on the environment variable AEMET_API_KEY, see <code><a href='aemet_api_key.html'>aemet_api_key()</a></code>.</p></td>
     </tr>
     <tr>
       <th>start</th>
@@ -160,7 +169,23 @@
     </tr>
     <tr>
       <th>labels</th>
-      <td><p>Character string as month labels for the X axis: "en" (english), "es" (spanish) or blank (numeric labels, 1-12).</p></td>
+      <td><p>Character string as month labels for the X axis: "en"
+(english), "es" (spanish), "fr" (french), etc.</p></td>
+    </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>Logical TRUE/FALSE. Provides information about the flow of
+information between the client and server.</p></td>
+    </tr>
+    <tr>
+      <th>ggplot2</th>
+      <td><p>TRUE/FALSE. On "TRUE" the function uses
+<code><a href='ggclimat_walter_lieth.html'>ggclimat_walter_lieth()</a></code>, in FALSE uses <code><a href='https://rdrr.io/pkg/climatol/man/diagwl.html'>climatol::diagwl()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Further arguments to
+<code><a href='https://rdrr.io/pkg/climatol/man/diagwl.html'>climatol::diagwl()</a></code>/<code><a href='ggclimat_walter_lieth.html'>ggclimat_walter_lieth()</a></code></p></td>
     </tr>
     </table>
 
@@ -169,20 +194,23 @@
     <p>a plot.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>The code is based on code from the CRAN package "climatol" by Jose A. Guijarro <a href='mailto:jguijarrop@aemet.es'>jguijarrop@aemet.es</a>.</p>
+    <p>The code is based on code from the CRAN package "climatol" by Jose A.
+Guijarro <a href='mailto:jguijarrop@aemet.es'>jguijarrop@aemet.es</a>.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Walter, H. &amp; Lieth, H (1960): Klimadiagramm Weltatlas. G. Fischer, Jena.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>See more details in the "diagwl" function <code><a href='https://rdrr.io/pkg/climatol/man/diagwl.html'>diagwl</a></code>.</p></div>
+    <div class='dont-index'><p><code><a href='ggclimat_walter_lieth.html'>ggclimat_walter_lieth()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='fu'>climatogram_period</span><span class='op'>(</span><span class='va'>station</span>, <span class='va'>apikey</span>, start <span class='op'>=</span> <span class='fl'>1990</span>, end <span class='op'>=</span> <span class='fl'>2020</span>, labels <span class='op'>=</span> <span class='st'>"en"</span><span class='op'>)</span>
-<span class='op'>}</span>
+    <pre class="examples"><div class='input'>
+<span class='co'># Run this example only if AEMET_API_KEY is set</span>
 
-</div></pre>
+<span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='aemet_detect_api_key.html'>aemet_detect_api_key</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'>climatogram_period</span><span class='op'>(</span><span class='st'>"9434"</span>, start <span class='op'>=</span> <span class='fl'>2015</span>, end <span class='op'>=</span> <span class='fl'>2020</span>, labels <span class='op'>=</span> <span class='st'>"en"</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div><div class='output co'>#&gt; <span class='message'>Data download may take a few minutes ... please wait </span></div><div class='img'><img src='climatogram_period-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -197,7 +225,7 @@
 	<div class="container">
 		<div class="col-md-3 col-sm-6 col-md-offset-1">
 			<h4 data-toc-skip>About climaemet</h4>
-			Developed by <a href='https://github.com/mpizarrotig'>Manuel Pizarro</a>, part of the <span class="ROS-light">rOpenSpain</span> project.
+			Developed by <a href='https://github.com/mpizarrotig'>Manuel Pizarro</a>, Diego Hernangómez, part of the <span class="ROS-light">rOpenSpain</span> project.
 			<hr class="hidden-md hidden-lg hidden-sm">
 		</div>
 		<div class="col-md-3 col-sm-6 col-md-offset-4">

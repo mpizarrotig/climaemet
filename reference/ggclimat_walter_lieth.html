@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Extreme values for a station — aemet_extremes_clim • climaemet</title>
+<title>Walter and Lieth climatic diagram on ggplot2 — ggclimat_walter_lieth • climaemet</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -54,8 +54,9 @@
 <!-- rOpenSpain -->
 <link href="../ropenspain.css" rel="stylesheet">
 
-<meta property="og:title" content="Extreme values for a station — aemet_extremes_clim" />
-<meta property="og:description" content="Get recorded extreme values for a station." />
+<meta property="og:title" content="Walter and Lieth climatic diagram on ggplot2 — ggclimat_walter_lieth" />
+<meta property="og:description" content="Plot of a Walter and Lieth climatic diagram of a station. This function is
+an updated version of climatol::diagwl(), by Jose A. Guijarro." />
 <meta property="og:image" content="https://ropenspain.github.io/climaemet/logo.png" />
 
 
@@ -122,93 +123,132 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Extreme values for a station</h1>
-    <small class="dont-index">Source: <a href='https://github.com/rOpenSpain/climaemet/blob/master/R/aemet_extremes.R'><code>R/aemet_extremes.R</code></a></small>
-    <div class="hidden name"><code>aemet_extremes_clim.Rd</code></div>
+    <h1>Walter and Lieth climatic diagram on <code>ggplot2</code></h1>
+    <small class="dont-index">Source: <a href='https://github.com/rOpenSpain/climaemet/blob/master/R/climatogram.R'><code>R/climatogram.R</code></a></small>
+    <div class="hidden name"><code>ggclimat_walter_lieth.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Get recorded extreme values for a station.</p>
+    <p>Plot of a Walter and Lieth climatic diagram of a station. This function is
+an updated version of <code><a href='https://rdrr.io/pkg/climatol/man/diagwl.html'>climatol::diagwl()</a></code>, by Jose A. Guijarro.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>aemet_extremes_clim</span><span class='op'>(</span>
-  station <span class='op'>=</span> <span class='cn'>NULL</span>,
-  apikey <span class='op'>=</span> <span class='cn'>NULL</span>,
-  parameter <span class='op'>=</span> <span class='st'>"T"</span>,
-  verbose <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  return_sf <span class='op'>=</span> <span class='cn'>FALSE</span>
+    <pre class="usage"><span class='fu'>ggclimat_walter_lieth</span><span class='op'>(</span>
+  <span class='va'>dat</span>,
+  est <span class='op'>=</span> <span class='st'>""</span>,
+  alt <span class='op'>=</span> <span class='cn'>NA</span>,
+  per <span class='op'>=</span> <span class='cn'>NA</span>,
+  mlab <span class='op'>=</span> <span class='st'>"es"</span>,
+  pcol <span class='op'>=</span> <span class='st'>"#002F70"</span>,
+  tcol <span class='op'>=</span> <span class='st'>"#ff0000"</span>,
+  pfcol <span class='op'>=</span> <span class='st'>"#9BAEE2"</span>,
+  sfcol <span class='op'>=</span> <span class='st'>"#3C6FC4"</span>,
+  shem <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  p3line <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  <span class='va'>...</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>station</th>
-      <td><p>Character string with station identifier code(s)
-(see <code><a href='aemet_stations.html'>aemet_stations()</a></code>)</p></td>
+      <th>dat</th>
+      <td><p>Monthly climatic data for which the diagram will be plotted.</p></td>
     </tr>
     <tr>
-      <th>apikey</th>
-      <td><p>Character string as personal API key. It can be set
-on the environment variable AEMET_API_KEY, see <code><a href='aemet_api_key.html'>aemet_api_key()</a></code>.</p></td>
+      <th>est</th>
+      <td><p>Name of the climatological station</p></td>
     </tr>
     <tr>
-      <th>parameter</th>
-      <td><p>Character string as temperature (T),
-precipitation (P) or wind (V) parameter.</p></td>
+      <th>alt</th>
+      <td><p>Altitude of the climatological station</p></td>
     </tr>
     <tr>
-      <th>verbose</th>
-      <td><p>Logical TRUE/FALSE. Provides information about the flow of
-information between the client and server.</p></td>
+      <th>per</th>
+      <td><p>Period on which the averages have been computed</p></td>
     </tr>
     <tr>
-      <th>return_sf</th>
-      <td><p>Logical. Should the function return an <code>sf</code> spatial object?
-If FALSE (the default value) it returns a tibble. Note that you need to
-have the <code>sf</code> package installed.</p></td>
+      <th>mlab</th>
+      <td><p>Month labels for the X axis. Use 2-digit language code ("en",
+"es", etc.). See <code><a href='https://readr.tidyverse.org/reference/locale.html'>readr::locale()</a></code> for info.</p></td>
+    </tr>
+    <tr>
+      <th>pcol</th>
+      <td><p>Color pen for precipitation.</p></td>
+    </tr>
+    <tr>
+      <th>tcol</th>
+      <td><p>Color pen for temperature.</p></td>
+    </tr>
+    <tr>
+      <th>pfcol</th>
+      <td><p>Fill color for probable frosts.</p></td>
+    </tr>
+    <tr>
+      <th>sfcol</th>
+      <td><p>Fill color for sure frosts.</p></td>
+    </tr>
+    <tr>
+      <th>shem</th>
+      <td><p>Set to TRUE for southern hemisphere stations.</p></td>
+    </tr>
+    <tr>
+      <th>p3line</th>
+      <td><p>Set to TRUE to draw a supplementary precipitation line
+referenced to three times the temperature (as suggested by Bogdan Rosca).</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Other graphic parameters</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a tibble or a <code>sf</code> object</p>
+    <p>A <code>ggplot2</code> object.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>See Details on <code><a href='https://rdrr.io/pkg/climatol/man/diagwl.html'>climatol::diagwl()</a></code>.</p>
+<p>Climatic data must be passed as a 4x12 matrix of monthly (January to
+December) data, in the following order:</p><ul>
+<li><p>Row 1:  Mean precipitation.</p></li>
+<li><p>Row 2: Mean maximum daily temperature.</p></li>
+<li><p>Row 3: Mean minimum daily temperature.</p></li>
+<li><p>Row 4: Absolute monthly minimum temperature.</p></li>
+</ul>
+
+<p>See <a href='climaemet_9434_climatogram.html'>climaemet_9434_climatogram</a> for a sample dataset.</p>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Walter, H., and Lieth, H. 1960. <em>Klimadiagramm-Weltatlas.</em>
+G. Fischer.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/climatol/man/diagwl.html'>climatol::diagwl()</a></code>, <code><a href='https://readr.tidyverse.org/reference/locale.html'>readr::locale()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='co'># Run this example only if AEMET_API_KEY is set</span>
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
 
-<span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='aemet_detect_api_key.html'>aemet_detect_api_key</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
-  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tibble.tidyverse.org/'>tibble</a></span><span class='op'>)</span>
-  <span class='va'>obs</span> <span class='op'>&lt;-</span> <span class='fu'>aemet_extremes_clim</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"9434"</span>, <span class='st'>"3195"</span><span class='op'>)</span><span class='op'>)</span>
-  <span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>obs</span><span class='op'>)</span>
-<span class='op'>}</span>
-</div><div class='output co'>#&gt; Rows: 26
-#&gt; Columns: 24
-#&gt; $ indicativo  <span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "9434", "9434", "9434", "9434", "9434", "9434", "9434", "9…
-#&gt; $ nombre      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "ZARAGOZA, AEROPUERTO", "ZARAGOZA, AEROPUERTO", "ZARAGOZA,…
-#&gt; $ ubicacion   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "ZARAGOZA", "ZARAGOZA", "ZARAGOZA", "ZARAGOZA", "ZARAGOZA"…
-#&gt; $ codigo      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "023000", "023000", "023000", "023000", "023000", "023000"…
-#&gt; $ temMin      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> -104, -114, -63, -24, 5, 52, 80, 84, 48, 6, -56, -95, -114…
-#&gt; $ diaMin      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 4, 5, 9, 3, 4, 11, 18, 17, 30, 25, 22, 25, 5, 16, 12, 1, 1…
-#&gt; $ anioMin     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 1971, 1963, 1964, 1967, 1967, 1971, 1965, 1968, 1974, 1974…
-#&gt; $ mesMin      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1…
-#&gt; $ temMax      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 206, 255, 283, 324, 365, 432, 445, 428, 392, 320, 284, 220…
-#&gt; $ diaMax      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 8, 27, 19, 9, 29, 29, 7, 26, 16, 1, 9, 8, 7, 27, 28, 30, 2…
-#&gt; $ anioMax     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 2016, 2019, 1957, 2011, 2001, 2019, 2015, 2010, 1964, 2013…
-#&gt; $ mesMax      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 6, 6, 6, 6, 6, 6, 6…
-#&gt; $ temMedBaja  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 29, 15, 71, 104, 132, 182, 213, 216, 169, 117, 73, 32, 15,…
-#&gt; $ anioMedBaja </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 1953, 1956, 1971, 1986, 1984, 1953, 1977, 1977, 1972, 1974…
-#&gt; $ mesMedBaja  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2…
-#&gt; $ temMedAlta  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 97, 121, 146, 174, 208, 266, 282, 279, 241, 195, 131, 101,…
-#&gt; $ anioMedAlta </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 2016, 1990, 2001, 2014, 2017, 2003, 2015, 2003, 1987, 2014…
-#&gt; $ mesMedAlta  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7…
-#&gt; $ temMedMin   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> -12, -30, 19, 54, 85, 126, 150, 151, 110, 72, 27, -21, -30…
-#&gt; $ anioMedMin  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 1957, 1956, 1973, 1970, 1984, 1969, 1954, 1954, 1965, 1974…
-#&gt; $ mesMedMin   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2…
-#&gt; $ temMedMax   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 135, 180, 207, 237, 278, 338, 358, 355, 307, 256, 172, 137…
-#&gt; $ anioMedMax  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 2016, 1990, 1997, 2014, 2017, 2003, 2015, 2003, 1987, 2014…
-#&gt; $ mesMedMax   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7…</div></span></pre>
+<span class='va'>wl</span> <span class='op'>&lt;-</span> <span class='fu'>ggclimat_walter_lieth</span><span class='op'>(</span>
+  <span class='va'>climaemet_9434_climatogram</span>,
+  alt <span class='op'>=</span> <span class='st'>"249"</span>,
+  per <span class='op'>=</span> <span class='st'>"1981-2010"</span>,
+  est <span class='op'>=</span> <span class='st'>"Zaragoza Airport"</span>
+<span class='op'>)</span>
+
+<span class='va'>wl</span>
+</div><div class='img'><img src='ggclimat_walter_lieth-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># As it is a ggplot object we can modify it</span>
+
+<span class='va'>wl</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>
+  plot.background <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_rect</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='st'>"grey80"</span><span class='op'>)</span>,
+  panel.background <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_rect</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='st'>"grey70"</span><span class='op'>)</span>,
+  axis.text.y.left <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>colour <span class='op'>=</span> <span class='st'>"black"</span>,
+                                  face <span class='op'>=</span> <span class='st'>"italic"</span><span class='op'>)</span>,
+  axis.text.y.right <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>colour <span class='op'>=</span> <span class='st'>"black"</span>,
+                                   face <span class='op'>=</span> <span class='st'>"bold"</span><span class='op'>)</span>
+<span class='op'>)</span>
+</div><div class='img'><img src='ggclimat_walter_lieth-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

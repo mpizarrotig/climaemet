@@ -4,13 +4,13 @@
     <loc>https://ropenspain.github.io/climaemet//index.html</loc>
   </url>
   <url>
-    <loc>https://ropenspain.github.io/climaemet//reference/aemet_daily_clim.html</loc>
+    <loc>https://ropenspain.github.io/climaemet//reference/aemet_api_key.html</loc>
   </url>
   <url>
-    <loc>https://ropenspain.github.io/climaemet//reference/aemet_daily_period.html</loc>
+    <loc>https://ropenspain.github.io/climaemet//reference/aemet_daily.html</loc>
   </url>
   <url>
-    <loc>https://ropenspain.github.io/climaemet//reference/aemet_daily_period_all.html</loc>
+    <loc>https://ropenspain.github.io/climaemet//reference/aemet_detect_api_key.html</loc>
   </url>
   <url>
     <loc>https://ropenspain.github.io/climaemet//reference/aemet_extremes_clim.html</loc>
@@ -19,25 +19,25 @@
     <loc>https://ropenspain.github.io/climaemet//reference/aemet_last_obs.html</loc>
   </url>
   <url>
-    <loc>https://ropenspain.github.io/climaemet//reference/aemet_monthly_clim.html</loc>
+    <loc>https://ropenspain.github.io/climaemet//reference/aemet_monthly.html</loc>
   </url>
   <url>
-    <loc>https://ropenspain.github.io/climaemet//reference/aemet_monthly_period.html</loc>
-  </url>
-  <url>
-    <loc>https://ropenspain.github.io/climaemet//reference/aemet_monthly_period_all.html</loc>
-  </url>
-  <url>
-    <loc>https://ropenspain.github.io/climaemet//reference/aemet_normal_clim.html</loc>
-  </url>
-  <url>
-    <loc>https://ropenspain.github.io/climaemet//reference/aemet_normal_clim_all.html</loc>
+    <loc>https://ropenspain.github.io/climaemet//reference/aemet_normal.html</loc>
   </url>
   <url>
     <loc>https://ropenspain.github.io/climaemet//reference/aemet_stations.html</loc>
   </url>
   <url>
     <loc>https://ropenspain.github.io/climaemet//reference/climaemet-package.html</loc>
+  </url>
+  <url>
+    <loc>https://ropenspain.github.io/climaemet//reference/climaemet_9434_climatogram.html</loc>
+  </url>
+  <url>
+    <loc>https://ropenspain.github.io/climaemet//reference/climaemet_9434_temp.html</loc>
+  </url>
+  <url>
+    <loc>https://ropenspain.github.io/climaemet//reference/climaemet_9434_wind.html</loc>
   </url>
   <url>
     <loc>https://ropenspain.github.io/climaemet//reference/climaemet_news.html</loc>
@@ -52,25 +52,22 @@
     <loc>https://ropenspain.github.io/climaemet//reference/climatogram_period.html</loc>
   </url>
   <url>
+    <loc>https://ropenspain.github.io/climaemet//reference/day_of_year.html</loc>
+  </url>
+  <url>
     <loc>https://ropenspain.github.io/climaemet//reference/dms2decdegrees.html</loc>
   </url>
   <url>
-    <loc>https://ropenspain.github.io/climaemet//reference/first_day_of_year.html</loc>
+    <loc>https://ropenspain.github.io/climaemet//reference/get_data_aemet.html</loc>
   </url>
   <url>
-    <loc>https://ropenspain.github.io/climaemet//reference/get_data_aemet.html</loc>
+    <loc>https://ropenspain.github.io/climaemet//reference/ggclimat_walter_lieth.html</loc>
   </url>
   <url>
     <loc>https://ropenspain.github.io/climaemet//reference/ggstripes.html</loc>
   </url>
   <url>
     <loc>https://ropenspain.github.io/climaemet//reference/ggwindrose.html</loc>
-  </url>
-  <url>
-    <loc>https://ropenspain.github.io/climaemet//reference/last_day_of_year.html</loc>
-  </url>
-  <url>
-    <loc>https://ropenspain.github.io/climaemet//reference/pipe.html</loc>
   </url>
   <url>
     <loc>https://ropenspain.github.io/climaemet//reference/windrose_days.html</loc>

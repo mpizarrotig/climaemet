@@ -84,7 +84,7 @@
       <i class="fa fa-align-justify"></i>
       </button>
       <span class="navbar-brand" id="ROS-navbar-brand">
-      <a class="navbar-link ROS-black" href="../index.html"><img src="../logo.png" alt="climaemet-logo" id="ROS-navbar-logo">climaemet</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+      <a class="navbar-link ROS-black" href="../index.html"><img src="../logo.png" alt="climaemet-logo" id="ROS-navbar-logo">climaemet</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0.9000</span>
       </span>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -102,7 +102,7 @@
   <a href="../news/index.html">Changelog</a>
 </li>
         <li>
-  <a href="https://github.com/mpizarrotig/climaemet/">
+  <a href="https://github.com/rOpenSpain/climaemet/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -135,8 +135,8 @@
     <tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
+          <h2 id="section-get-data" class="hasAnchor"><a href="#section-get-data" class="anchor"></a>Get data</h2>
+          <p class="section-desc"><p>Query the AEMET API with these functions.</p></p>
         </th>
       </tr>
       
@@ -147,21 +147,9 @@
       <tr>
         
         <td>
-          <p><code><a href="aemet_daily_clim.html">aemet_daily_clim()</a></code> </p>
+          <p><code><a href="aemet_daily.html">aemet_daily_clim()</a></code> <code><a href="aemet_daily.html">aemet_daily_period()</a></code> <code><a href="aemet_daily.html">aemet_daily_period_all()</a></code> </p>
         </td>
-        <td><p>Daily/annual climatology values for a station</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="aemet_daily_period.html">aemet_daily_period()</a></code> </p>
-        </td>
-        <td><p>Daily climatology values of a station for a time period</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="aemet_daily_period_all.html">aemet_daily_period_all()</a></code> </p>
-        </td>
-        <td><p>Daily climatology values of all stations for a time period</p></td>
+        <td><p>Daily/annual climatology values</p></td>
       </tr><tr>
         
         <td>
@@ -177,46 +165,35 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="aemet_monthly_clim.html">aemet_monthly_clim()</a></code> </p>
+          <p><code><a href="aemet_monthly.html">aemet_monthly_clim()</a></code> <code><a href="aemet_monthly.html">aemet_monthly_period()</a></code> <code><a href="aemet_monthly.html">aemet_monthly_period_all()</a></code> </p>
         </td>
-        <td><p>Monthly/annual climatology values for a station</p></td>
+        <td><p>Monthly/annual climatology</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="aemet_monthly_period.html">aemet_monthly_period()</a></code> </p>
+          <p><code><a href="aemet_normal.html">aemet_normal_clim()</a></code> <code><a href="aemet_normal.html">aemet_normal_clim_all()</a></code> </p>
         </td>
-        <td><p>Monthly climatology values of a station for a time period</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="aemet_monthly_period_all.html">aemet_monthly_period_all()</a></code> </p>
-        </td>
-        <td><p>Monthly climatology of all stations for a period of time</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="aemet_normal_clim.html">aemet_normal_clim()</a></code> </p>
-        </td>
-        <td><p>Normal climatology values for a station</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="aemet_normal_clim_all.html">aemet_normal_clim_all()</a></code> </p>
-        </td>
-        <td><p>Normal climatology values for all stations</p></td>
+        <td><p>Normal climatology values</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="aemet_stations.html">aemet_stations()</a></code> </p>
         </td>
         <td><p>AEMET stations</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="climaemet_news.html">climaemet_news()</a></code> </p>
-        </td>
-        <td><p>climaemet_news</p></td>
-      </tr><tr>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-plot-data" class="hasAnchor"><a href="#section-plot-data" class="anchor"></a>Plot data</h2>
+          <p class="section-desc"><p>Complementary functions to create different plot types.</p></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
           <p><code><a href="climatestripes_station.html">climatestripes_station()</a></code> </p>
@@ -237,21 +214,9 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="dms2decdegrees.html">dms2decdegrees()</a></code> </p>
+          <p><code><a href="ggclimat_walter_lieth.html">ggclimat_walter_lieth()</a></code> </p>
         </td>
-        <td><p>Converts dms to decimal degrees</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="first_day_of_year.html">first_day_of_year()</a></code> </p>
-        </td>
-        <td><p>First day of year</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_data_aemet.html">get_data_aemet()</a></code> </p>
-        </td>
-        <td><p>Client tool for AEMET API</p></td>
+        <td><p>Walter and Lieth climatic diagram on <code>ggplot2</code></p></td>
       </tr><tr>
         
         <td>
@@ -267,12 +232,6 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="last_day_of_year.html">last_day_of_year()</a></code> </p>
-        </td>
-        <td><p>Last day of year</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="windrose_days.html">windrose_days()</a></code> </p>
         </td>
         <td><p>Windrose (speed/direction) diagram of a station over a days period</p></td>
@@ -282,6 +241,86 @@
           <p><code><a href="windrose_period.html">windrose_period()</a></code> </p>
         </td>
         <td><p>Windrose (speed/direction) diagram of a station over a time period</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-helpers" class="hasAnchor"><a href="#section-helpers" class="anchor"></a>Helpers</h2>
+          <p class="section-desc"><p>Helper functions used on this package.</p></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="aemet_api_key.html">aemet_api_key()</a></code> </p>
+        </td>
+        <td><p>Install a AEMET API Key in Your <code>.Renviron</code> File for Repeated Use</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="aemet_detect_api_key.html">aemet_detect_api_key()</a></code> </p>
+        </td>
+        <td><p>Check if an AEMET API Key is present as environment variable</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="climaemet_news.html">climaemet_news()</a></code> </p>
+        </td>
+        <td><p>climaemet_news</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="day_of_year.html">first_day_of_year()</a></code> <code><a href="day_of_year.html">last_day_of_year()</a></code> </p>
+        </td>
+        <td><p>First and last day of year</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="dms2decdegrees.html">dms2decdegrees()</a></code> </p>
+        </td>
+        <td><p>Converts dms to decimal degrees</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_data_aemet.html">get_data_aemet()</a></code> <code><a href="get_data_aemet.html">get_metadata_aemet()</a></code> </p>
+        </td>
+        <td><p>Client tool for AEMET API</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-datasets" class="hasAnchor"><a href="#section-datasets" class="anchor"></a>Datasets</h2>
+          <p class="section-desc"><p>Example datasets included on the package.</p></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="climaemet_9434_climatogram.html">climaemet_9434_climatogram</a></code> </p>
+        </td>
+        <td><p>Climatogram data for Zaragoza Airport ("9434") period 1981-2010</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="climaemet_9434_temp.html">climaemet_9434_temp</a></code> </p>
+        </td>
+        <td><p>Average annual temperatures for Zaragoza Airport ("9434") period 1950-2020</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="climaemet_9434_wind.html">climaemet_9434_wind</a></code> </p>
+        </td>
+        <td><p>Wind conditions for Zaragoza Airport ("9434") period 2000-2020</p></td>
       </tr>
     </tbody>
     </table>
@@ -300,7 +339,7 @@
 	<div class="container">
 		<div class="col-md-3 col-sm-6 col-md-offset-1">
 			<h4 data-toc-skip>About climaemet</h4>
-			Developed by <a href='https://github.com/mpizarrotig'>Manuel Pizarro</a>, part of the <span class="ROS-light">rOpenSpain</span> project.
+			Developed by <a href='https://github.com/mpizarrotig'>Manuel Pizarro</a>, Diego Hernangómez, part of the <span class="ROS-light">rOpenSpain</span> project.
 			<hr class="hidden-md hidden-lg hidden-sm">
 		</div>
 		<div class="col-md-3 col-sm-6 col-md-offset-4">
