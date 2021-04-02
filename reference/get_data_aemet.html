@@ -188,20 +188,17 @@ information between the client and server.</p></td>
 <span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='aemet_detect_api_key.html'>aemet_detect_api_key</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
   <span class='fu'>get_metadata_aemet</span><span class='op'>(</span><span class='va'>url</span><span class='op'>)</span>
 <span class='op'>}</span>
-</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 291 x 7</span><span>
-#&gt;    latitud provincia altitud indicativo nombre                 indsinop longitud
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> 413515N BARCELONA 74      0252D      ARENYS DE MAR          </span><span style='color: #949494;'>"</span><span>08186</span><span style='color: #949494;'>"</span><span>  023224E 
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> 411734N BARCELONA 4       0076       BARCELONA AEROPUERTO   </span><span style='color: #949494;'>"</span><span>08181</span><span style='color: #949494;'>"</span><span>  020412E 
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> 412506N BARCELONA 408     0200E      BARCELONA, FABRA       </span><span style='color: #949494;'>""</span><span>       020727E 
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> 412326N BARCELONA 6       0201D      BARCELONA              </span><span style='color: #949494;'>"</span><span>08180</span><span style='color: #949494;'>"</span><span>  021200E 
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> 414312N BARCELONA 291     0149X      MANRESA                </span><span style='color: #949494;'>"</span><span>08174</span><span style='color: #949494;'>"</span><span>  015025E 
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> 413125N BARCELONA 146     0229I      SABADELL AEROPUERTO    </span><span style='color: #949494;'>"</span><span>08192</span><span style='color: #949494;'>"</span><span>  020611E 
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> 413903N BARCELONA 40      0255B      SANTA SUSANNA          </span><span style='color: #949494;'>"</span><span>08188</span><span style='color: #949494;'>"</span><span>  024149E 
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> 415442N GIRONA    143     0367       GIRONA AEROPUERTO      </span><span style='color: #949494;'>"</span><span>08184</span><span style='color: #949494;'>"</span><span>  024548E 
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> 415848N GIRONA    95      0370B      GIRONA, ANTIC INSTITUT </span><span style='color: #949494;'>""</span><span>       024931E 
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> 420616N GIRONA    157     0372C      PORQUERES              </span><span style='color: #949494;'>"</span><span>08120</span><span style='color: #949494;'>"</span><span>  024549E 
-#&gt; </span><span style='color: #949494;'># … with 281 more rows</span><span></div></span></pre>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 7 x 7</span><span>
+#&gt;   unidad_generadora  periodicidad descripcion    formato copyright    notaLegal 
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>              </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Servicio del Banc… 1 vez al día Inventario de… applic… © AEMET. Au… http://ww…
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> Servicio del Banc… 1 vez al día Inventario de… applic… © AEMET. Au… http://ww…
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> Servicio del Banc… 1 vez al día Inventario de… applic… © AEMET. Au… http://ww…
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> Servicio del Banc… 1 vez al día Inventario de… applic… © AEMET. Au… http://ww…
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> Servicio del Banc… 1 vez al día Inventario de… applic… © AEMET. Au… http://ww…
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span> Servicio del Banc… 1 vez al día Inventario de… applic… © AEMET. Au… http://ww…
+#&gt; </span><span style='color: #BCBCBC;'>7</span><span> Servicio del Banc… 1 vez al día Inventario de… applic… © AEMET. Au… http://ww…
+#&gt; </span><span style='color: #949494;'># … with 1 more variable: campos &lt;df[,4]&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
