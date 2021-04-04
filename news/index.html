@@ -133,6 +133,14 @@
 <li>package added to rOpenSpain project: repo transferred to <a href="https://github.com/rOpenSpain/climaemet" class="uri">https://github.com/rOpenSpain/climaemet</a>
 </li>
 </ul>
+<div id="breaking-changes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#breaking-changes" class="anchor"></a>Breaking changes:</h2>
+<ul>
+<li>
+<code>apikey</code> parameter has been deprecated on all the functions. Now the API Key is globally managed via an environment variable: see <code><a href="../reference/aemet_api_key.html">aemet_api_key()</a></code>.</li>
+</ul>
+</div>
 <div id="major-changes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#major-changes" class="anchor"></a>Major changes</h2>
@@ -147,8 +155,6 @@
 <h2 class="hasAnchor">
 <a href="#enhancements" class="anchor"></a>Enhancements</h2>
 <ul>
-<li>New API Key management. It can be set via <code><a href="../reference/aemet_api_key.html">aemet_api_key()</a></code> or <code><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv(AEMET_API_KEY = "&lt;your api key")</a></code>
-</li>
 <li>
 <code><a href="../reference/aemet_last_obs.html">aemet_last_obs()</a></code> now is vectorized and it can also retrieve all the stations at a glance with <code>station = "all"</code>
 </li>

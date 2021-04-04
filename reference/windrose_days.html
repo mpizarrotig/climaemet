@@ -135,7 +135,6 @@ days period.</p>
 
     <pre class="usage"><span class='fu'>windrose_days</span><span class='op'>(</span>
   <span class='va'>station</span>,
-  apikey <span class='op'>=</span> <span class='cn'>NULL</span>,
   start <span class='op'>=</span> <span class='st'>"2000-12-01"</span>,
   end <span class='op'>=</span> <span class='st'>"2000-12-31"</span>,
   n_directions <span class='op'>=</span> <span class='fl'>8</span>,
@@ -154,11 +153,6 @@ days period.</p>
       <th>station</th>
       <td><p>Character string with station identifier code(s)
 (see <code><a href='aemet_stations.html'>aemet_stations()</a></code>) or "all" for all the stations.</p></td>
-    </tr>
-    <tr>
-      <th>apikey</th>
-      <td><p>Character string as personal API key. It can be set
-on the environment variable AEMET_API_KEY, see <code><a href='aemet_api_key.html'>aemet_api_key()</a></code>.</p></td>
     </tr>
     <tr>
       <th>start</th>

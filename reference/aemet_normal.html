@@ -135,14 +135,9 @@ Get normal climatology values for all stations." />
 <p>Get normal climatology values for all stations.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>aemet_normal_clim</span><span class='op'>(</span>
-  station <span class='op'>=</span> <span class='cn'>NULL</span>,
-  apikey <span class='op'>=</span> <span class='cn'>NULL</span>,
-  verbose <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  return_sf <span class='op'>=</span> <span class='cn'>FALSE</span>
-<span class='op'>)</span>
+    <pre class="usage"><span class='fu'>aemet_normal_clim</span><span class='op'>(</span>station <span class='op'>=</span> <span class='cn'>NULL</span>, verbose <span class='op'>=</span> <span class='cn'>FALSE</span>, return_sf <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 
-<span class='fu'>aemet_normal_clim_all</span><span class='op'>(</span>apikey <span class='op'>=</span> <span class='cn'>NULL</span>, verbose <span class='op'>=</span> <span class='cn'>FALSE</span>, return_sf <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
+<span class='fu'>aemet_normal_clim_all</span><span class='op'>(</span>verbose <span class='op'>=</span> <span class='cn'>FALSE</span>, return_sf <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -151,11 +146,6 @@ Get normal climatology values for all stations." />
       <th>station</th>
       <td><p>Character string with station identifier code(s)
 (see <code><a href='aemet_stations.html'>aemet_stations()</a></code>) or "all" for all the stations.</p></td>
-    </tr>
-    <tr>
-      <th>apikey</th>
-      <td><p>Character string as personal API key. It can be set
-on the environment variable AEMET_API_KEY, see <code><a href='aemet_api_key.html'>aemet_api_key()</a></code>.</p></td>
     </tr>
     <tr>
       <th>verbose</th>

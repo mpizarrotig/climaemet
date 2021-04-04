@@ -131,9 +131,9 @@
     <p>Client tool to get data and metadata from AEMET and convert json to tibble.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_data_aemet</span><span class='op'>(</span><span class='va'>apidest</span>, apikey <span class='op'>=</span> <span class='cn'>NULL</span>, verbose <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+    <pre class="usage"><span class='fu'>get_data_aemet</span><span class='op'>(</span><span class='va'>apidest</span>, verbose <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 
-<span class='fu'>get_metadata_aemet</span><span class='op'>(</span><span class='va'>apidest</span>, apikey <span class='op'>=</span> <span class='cn'>NULL</span>, verbose <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
+<span class='fu'>get_metadata_aemet</span><span class='op'>(</span><span class='va'>apidest</span>, verbose <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -142,11 +142,6 @@
       <th>apidest</th>
       <td><p>Character string as destination URL. See
 <a href='https://opendata.aemet.es/dist/index.html'>https://opendata.aemet.es/dist/index.html</a>.</p></td>
-    </tr>
-    <tr>
-      <th>apikey</th>
-      <td><p>Character string as personal API key. It can be set
-on the environment variable AEMET_API_KEY, see <code><a href='aemet_api_key.html'>aemet_api_key()</a></code>.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
