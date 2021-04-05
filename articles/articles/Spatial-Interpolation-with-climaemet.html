@@ -110,7 +110,7 @@
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rspatial.org/raster">raster</a></span><span class="op">)</span> <span class="co"># raster handling</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/gstat/">gstat</a></span><span class="op">)</span> <span class="co"># for spatial interpolation</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span> <span class="co"># data handling</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span> <span class="co"># for plots</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://gif.ski/">gifski</a></span><span class="op">)</span> <span class="co"># we would create an animation</span></code></pre></div>
 </div>
 <div id="retrieving-data" class="section level2">
@@ -155,12 +155,12 @@
 <div id="interpolating-the-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#interpolating-the-data" class="anchor"></a>Interpolating the data</h2>
-<p>As we need to predict values at locations where no measurements have been made, we would need to interpolate the data. On this example we would apply the<a href="https://rspatial.org/raster/analysis/4-interpolation.html#inverse-distance-weighted">Inverse Distance Weighted method</a>, that is one of several approaches to perform spatial interpolation. We recommend <a href="https://rspatial.org/raster/analysis/4-interpolation.html">this article</a> on how to perform these analysis on <strong>R</strong>.</p>
+<p>As we need to predict values at locations where no measurements have been made, we would need to interpolate the data. On this example we would apply the <a href="https://rspatial.org/raster/analysis/4-interpolation.html#inverse-distance-weighted">Inverse Distance Weighted method</a>, that is one of several approaches to perform spatial interpolation. We recommend <a href="https://rspatial.org/raster/analysis/4-interpolation.html">this article</a> on how to perform these analysis on <strong>R</strong>.</p>
 <p>The process would be as follow:</p>
 <ul>
 <li>Create an spatial object (grid) where the predicted values would be applied.</li>
-<li>Perform an spatial interpolation</li>
-<li>Visualize the results</li>
+<li>Perform an spatial interpolation.</li>
+<li>Visualize the results.</li>
 </ul>
 <div id="creating-a-grid" class="section level3">
 <h3 class="hasAnchor">
@@ -171,7 +171,7 @@
 <ul>
 <li>When using several spatial objects, we should ensure that all of them present the same CRS. This can be achieved projecting the objects (i.e. transforming their coordinates) to the same CRS.</li>
 <li>Longitude/latitude coordinates are unprojected coordinates. When we project an object (i.e. Mercator projection) we actually change the values of every point (x,y) coordinates (i.e. a projection is a transformation of the coordinates.)</li>
-<li>For measuring distance in meters, etc. we should choose the right projection. Distances on unprojected coordinates are meaningless. Think that 1 degree of longitude on the equator means 111 kms but on the North Pole means roughly 0.11 m. The degrees just split a circumference on equally spaced buckets, but the Earth is an spheroid and the circumferences at different latitudes doesn’t have the same length (sphere vs. cylinder, where circumferences are the same at any latitude - y axis.)</li>
+<li>For measuring distance in meters, etc. we should choose the right projection. Distances on unprojected coordinates are meaningless. Think that 1 degree of longitude on the equator means 111 kms but on the North Pole means roughly 0.11 m. The degrees just split a circumference on equally spaced buckets, but the Earth is an spheroid and the circumferences at different latitudes doesn’t have the same length (opposed to a cylinder, where circumferences are the same at any latitude or y-axis.)</li>
 </ul>
 <p>On this exercise, we choose to project our objects to <strong>ETRS89 / UTM zone 30N</strong> <a href="https://epsg.io/25830">EPSG:25830</a>, that provides x and y values on meters and maximizes the accuracy for Spain.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
