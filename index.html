@@ -101,8 +101,6 @@
 <a href="#description" class="anchor"></a>Description</h2>
 <p>The goal of <strong>climaemet</strong> is to serve as an interface to download the climatic data of the Spanish Meteorological Agency (AEMET) directly from R using their API (<a href="https://opendata.aemet.es/" class="uri">https://opendata.aemet.es/</a>) and create scientific graphs (climate charts, trend analysis of climate time series, temperature and precipitation anomalies maps, “warming stripes” graphics, climatograms, etc.).</p>
 <p>Browse manual at <a href="https://ropenspain.github.io/climaemet/" class="uri">https://ropenspain.github.io/climaemet/</a></p>
-<p align="center">
-<img alt="climaemet_gif" src="https://ropenspain.github.io/climaemet/articles/articles/winter_2021.gif" width="60%"></p>
 </div>
 <div id="aemet-open-data" class="section level2">
 <h2 class="hasAnchor">
@@ -164,7 +162,7 @@
 <code class="sourceCode R"><span class="co"># See a tibble in action</span>
 
 <span class="fu"><a href="reference/aemet_last_obs.html">aemet_last_obs</a></span><span class="op">(</span><span class="st">"9434"</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 23 x 25</span>
+<span class="co">#&gt; # A tibble: 24 x 25</span>
 <span class="co">#&gt;    idema   lon fint                 prec   alt  vmax    vv    dv   lat  dmax</span>
 <span class="co">#&gt;    &lt;chr&gt; &lt;dbl&gt; &lt;dttm&gt;              &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
 <span class="co">#&gt;  1 9434  -1.00 2021-04-05 01:00:00     0   249   7.5   5.8   292  41.7   295</span>
@@ -177,7 +175,7 @@
 <span class="co">#&gt;  8 9434  -1.00 2021-04-05 08:00:00     0   249  10.2   5.6   317  41.7   313</span>
 <span class="co">#&gt;  9 9434  -1.00 2021-04-05 09:00:00     0   249   8.4   4.9   307  41.7   298</span>
 <span class="co">#&gt; 10 9434  -1.00 2021-04-05 10:00:00     0   249   8.5   6     323  41.7   298</span>
-<span class="co">#&gt; # ... with 13 more rows, and 15 more variables: ubi &lt;chr&gt;, pres &lt;dbl&gt;,</span>
+<span class="co">#&gt; # ... with 14 more rows, and 15 more variables: ubi &lt;chr&gt;, pres &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   hr &lt;dbl&gt;, stdvv &lt;dbl&gt;, ts &lt;dbl&gt;, pres_nmar &lt;dbl&gt;, tamin &lt;dbl&gt;, ta &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   tamax &lt;dbl&gt;, tpr &lt;dbl&gt;, stddv &lt;dbl&gt;, inso &lt;dbl&gt;, tss5cm &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   pacutp &lt;dbl&gt;, tss20cm &lt;dbl&gt;</span></code></pre></div>
