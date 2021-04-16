@@ -106,8 +106,8 @@
 <code class="sourceCode R">
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ropenspain.github.io/climaemet/">climaemet</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ropenspain.github.io/mapSpain/">mapSpain</a></span><span class="op">)</span> <span class="co"># Base maps of Spain</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span> <span class="co"># spatial shape handling</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rspatial.org/raster">raster</a></span><span class="op">)</span> <span class="co"># raster handling</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span> <span class="co"># spatial shape handling</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/gstat/">gstat</a></span><span class="op">)</span> <span class="co"># for spatial interpolation</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span> <span class="co"># data handling</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span> <span class="co"># for plots</span>
@@ -119,20 +119,22 @@
 <p>We choose here the daily climatic data from Winter 2020-2021 in Spain. Note that on the first half of January, <a href="https://en.wikipedia.org/wiki/Storm_Filomena">Storm Filomena</a> brought unusual heavy snowfall to parts of Spain, with Madrid recording its heaviest snowfall since 1971. We should be able to spot that.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
-<span class="va">clim_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/aemet_daily_clim.html">aemet_daily_clim</a></span><span class="op">(</span>start <span class="op">=</span> <span class="st">"2020-12-21"</span>,
-                              end <span class="op">=</span> <span class="st">"2021-03-20"</span>,
-                              return_sf <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="va">clim_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/aemet_daily_clim.html">aemet_daily_clim</a></span><span class="op">(</span>
+  start <span class="op">=</span> <span class="st">"2020-12-21"</span>,
+  end <span class="op">=</span> <span class="st">"2021-03-20"</span>,
+  return_sf <span class="op">=</span> <span class="cn">TRUE</span>
+<span class="op">)</span>
 
 <span class="va">clim_data_clean</span> <span class="op">&lt;-</span> <span class="va">clim_data</span> <span class="op">%&gt;%</span>
   <span class="co"># Exclude Canary Islands from analysis</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="va">provincia</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"LAS PALMAS"</span>, <span class="st">"STA. CRUZ DE TENERIFE"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/raster/man/select.html">select</a></span><span class="op">(</span><span class="va">fecha</span>, <span class="va">tmed</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">fecha</span>, <span class="va">tmed</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="co"># Exclude NAs</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">tmed</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">clim_data_clean</span><span class="op">$</span><span class="va">tmed</span><span class="op">)</span>
 <span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span>
-<span class="co">#&gt; -15.200   6.100   9.500   8.874  12.200  25.000</span>
+<span class="co">#&gt; -15.200   6.100   9.500   8.877  12.200  25.000</span>
 
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">clim_data_clean</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
@@ -167,7 +169,7 @@
 <p>On this example, we would use <strong>sf</strong> to create a regular grid that would be converted into a <strong>raster</strong>.</p>
 <p><strong>An important thing to consider in any spatial analysis or visualization</strong> is the <a href="https://en.wikipedia.org/wiki/Spatial_reference_system">coordinate reference system (CRS)</a>. We won’t cover this in detail on this article, but we should mention a few key considerations:</p>
 <ul>
-<li>When using several spatial objects, we should ensure that all of them present the same CRS. This can be achieved projecting the objects (i.e. transforming their coordinates) to the same CRS.</li>
+<li>When using several spatial objects, we should ensure that <strong>all of them present the same CRS</strong>. This can be achieved projecting the objects (i.e. transforming their coordinates) to the same CRS.</li>
 <li>Longitude/latitude coordinates are unprojected coordinates. When we project an object (i.e. Mercator projection) we actually change the values of every point (x,y) coordinates (i.e. a projection is a transformation of the coordinates.)</li>
 <li>For measuring distance in meters, etc. we should choose the right projection. Distances on unprojected coordinates are meaningless. Think that 1 degree of longitude on the equator means 111 kms but on the North Pole means roughly 0.11 m. The degrees just split a circumference on equally spaced buckets, but the Earth is an spheroid and the circumferences at different latitudes doesn’t have the same length (opposed to a cylinder, where circumferences are the same at any latitude or y-axis.)</li>
 </ul>
@@ -228,13 +230,11 @@
 <span class="va">interp_temp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/raster.html">raster</a></span><span class="op">(</span><span class="va">interp_temp</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/raster/man/mask.html">mask</a></span><span class="op">(</span><span class="va">CCAA_utm</span><span class="op">)</span>
 
-<span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">interp_temp</span>, axes <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/raster/man/plot.html">plot</a></span><span class="op">(</span><span class="va">interp_temp</span>, axes <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <p><img src="Spatial-Interpolation-with-climaemet_files/figure-html/interpolate-1.png" width="700"></p>
 <p>Let’s create a nice ggplot2 plot!</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
-
-
 <span class="co"># Making a nice plot on ggplot2</span>
 <span class="va">temp_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">interp_temp</span>, xy <span class="op">=</span> <span class="cn">TRUE</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/raster/man/names.html">names</a></span><span class="op">(</span><span class="va">temp_values</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span>, <span class="st">"temp"</span><span class="op">)</span>
@@ -265,11 +265,9 @@
 <div id="animation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#animation" class="anchor"></a>Animation</h2>
-<p>On this section, we would loop over the dates to create a final animation to observe the evolution of Filomena in Spain</p>
+<p>On this section, we would loop over the dates to create a final animation to observe the evolution of temperature trough the winter of 2020/21.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
-
-
 <span class="co"># Extending and animating</span>
 <span class="va">dates</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/unique.html">unique</a></span><span class="op">(</span><span class="va">clim_data_clean</span><span class="op">$</span><span class="va">fecha</span><span class="op">)</span><span class="op">)</span>
 
@@ -359,6 +357,76 @@
 <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html">include_graphics</a></span><span class="op">(</span><span class="st">"winter_2021.gif"</span><span class="op">)</span></code></pre></div>
 <p><img src="winter_2021.gif"><!-- --></p>
 </div>
+<div id="geogrid" class="section level2">
+<h2 class="hasAnchor">
+<a href="#geogrid" class="anchor"></a>Geogrid</h2>
+<p>Let’s plot an histogram for each Autonomous Community using the <code>geofacet</code> package:</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hafen/geofacet">geofacet</a></span><span class="op">)</span>
+
+<span class="va">clim_data_geofacet</span> <span class="op">&lt;-</span> <span class="va">clim_data</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html">st_drop_geometry</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/raster/man/select.html">select</a></span><span class="op">(</span><span class="va">fecha</span>, <span class="va">tmed</span>, <span class="va">provincia</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">tmed</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># Paste Province info and codes</span>
+<span class="va">clim_data_mean</span> <span class="op">&lt;-</span> <span class="va">clim_data_geofacet</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>name_norm <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span>
+    <span class="va">provincia</span> <span class="op">==</span> <span class="st">"STA. CRUZ DE TENERIFE"</span>,
+    <span class="st">"Santa Cruz de Tenerife"</span>,
+    <span class="va">provincia</span>
+  <span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>name_norm <span class="op">=</span> <span class="fu"><a href="https://ropenspain.github.io/mapSpain/reference/esp_dict.html">esp_dict_translate</a></span><span class="op">(</span><span class="va">name_norm</span>, <span class="st">"es"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>cpro <span class="op">=</span> <span class="fu"><a href="https://ropenspain.github.io/mapSpain/reference/esp_dict.html">esp_dict_region_code</a></span><span class="op">(</span><span class="va">name_norm</span>, destination <span class="op">=</span> <span class="st">"cpro"</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># Paste CCAA codes and names</span>
+<span class="va">clim_data_mean</span> <span class="op">&lt;-</span> <span class="va">clim_data_mean</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">esp_codelist</span>, by <span class="op">=</span> <span class="st">"cpro"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">fecha</span>, <span class="va">ine.ccaa.name</span>, <span class="va">codauto</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>
+    mean_tmed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">tmed</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
+    obs <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span>,
+    .groups <span class="op">=</span> <span class="st">"keep"</span>
+  <span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>code <span class="op">=</span> <span class="va">codauto</span><span class="op">)</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">clim_data_mean</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">fecha</span>, <span class="va">mean_tmed</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"steelblue"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="co"># Line on Filomena peak</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>
+    xintercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"2021-01-08"</span><span class="op">)</span>,
+    colour <span class="op">=</span> <span class="st">"red"</span>
+  <span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/geofacet/man/facet_geo.html">facet_geo</a></span><span class="op">(</span><span class="op">~</span><span class="va">code</span>,
+    grid <span class="op">=</span> <span class="st">"spain_ccaa_grid1"</span>,
+    scales <span class="op">=</span> <span class="st">"free_y"</span>,
+    label <span class="op">=</span> <span class="st">"name"</span>
+  <span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Mean Temperature"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
+    strip.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>,
+    axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>
+      color <span class="op">=</span> <span class="st">"grey20"</span>,
+      size <span class="op">=</span> <span class="fl">5</span>,
+      angle <span class="op">=</span> <span class="fl">90</span>,
+      hjust <span class="op">=</span> <span class="fl">.5</span>,
+      vjust <span class="op">=</span> <span class="fl">.5</span>,
+      face <span class="op">=</span> <span class="st">"plain"</span>
+    <span class="op">)</span>,
+    axis.text.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>
+      color <span class="op">=</span> <span class="st">"grey20"</span>,
+      size <span class="op">=</span> <span class="fl">5</span>,
+      angle <span class="op">=</span> <span class="fl">0</span>,
+      hjust <span class="op">=</span> <span class="fl">1</span>,
+      vjust <span class="op">=</span> <span class="fl">0</span>,
+      face <span class="op">=</span> <span class="st">"plain"</span>
+    <span class="op">)</span>
+  <span class="op">)</span></code></pre></div>
+<p><img src="Spatial-Interpolation-with-climaemet_files/figure-html/geofacet-1.png" width="700"></p>
+</div>
 <div id="references" class="section level2">
 <h2 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h2>
@@ -367,7 +435,9 @@
 <div id="session-info" class="section level2">
 <h2 class="hasAnchor">
 <a href="#session-info" class="anchor"></a>Session Info</h2>
-<details><p><summary><strong>Details</strong></summary></p>
+<details><p><summary></summary></p>
+<p><strong>Details</strong></p>
+<p></p>
 <pre><code>#&gt; R version 4.0.5 (2021-03-31)
 #&gt; Platform: x86_64-apple-darwin17.0 (64-bit)
 #&gt; Running under: macOS Catalina 10.15.7
@@ -383,28 +453,38 @@
 #&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     
 #&gt; 
 #&gt; other attached packages:
-#&gt; [1] gifski_1.4.3         ggplot2_3.3.3        dplyr_1.0.5         
-#&gt; [4] gstat_2.0-7          raster_3.4-5         sp_1.4-5            
-#&gt; [7] sf_0.9-8             mapSpain_0.2.1       climaemet_1.0.0.9000
+#&gt;  [1] geofacet_0.2.0       gifski_1.4.3         ggplot2_3.3.3       
+#&gt;  [4] dplyr_1.0.5          gstat_2.0-7          sf_0.9-8            
+#&gt;  [7] raster_3.4-5         sp_1.4-5             mapSpain_0.2.1      
+#&gt; [10] climaemet_1.0.0.9000
 #&gt; 
 #&gt; loaded via a namespace (and not attached):
-#&gt;  [1] Rcpp_1.0.6         lubridate_1.7.10   lattice_0.20-41    FNN_1.1.3         
-#&gt;  [5] class_7.3-18       zoo_1.8-9          rprojroot_2.0.2    digest_0.6.27     
-#&gt;  [9] utf8_1.2.1         R6_2.5.0           evaluate_0.14      e1071_1.7-6       
-#&gt; [13] highr_0.8          httr_1.4.2         pillar_1.6.0       rlang_0.4.10      
-#&gt; [17] curl_4.3           rmarkdown_2.7      pkgdown_1.6.1      labeling_0.4.2    
-#&gt; [21] textshaping_0.3.3  desc_1.3.0         readr_1.4.0        stringr_1.4.0     
-#&gt; [25] munsell_0.5.0      proxy_0.4-25       compiler_4.0.5     xfun_0.22         
-#&gt; [29] pkgconfig_2.0.3    systemfonts_1.0.1  htmltools_0.5.1.1  tidyselect_1.1.0  
-#&gt; [33] tibble_3.1.0       intervals_0.15.2   codetools_0.2-18   fansi_0.4.2       
-#&gt; [37] spacetime_1.2-4    crayon_1.4.1       withr_2.4.1        grid_4.0.5        
-#&gt; [41] jsonlite_1.7.2     gtable_0.3.0       lifecycle_1.0.0    DBI_1.1.1         
-#&gt; [45] magrittr_2.0.1     units_0.7-1        scales_1.1.1       KernSmooth_2.23-18
-#&gt; [49] stringi_1.5.3      cachem_1.0.4       farver_2.1.0       fs_1.5.0          
-#&gt; [53] ellipsis_0.3.1     xts_0.12.1         ragg_1.1.2         generics_0.1.0    
-#&gt; [57] vctrs_0.3.7        tools_4.0.5        glue_1.4.2         purrr_0.3.4       
-#&gt; [61] hms_1.0.0          fastmap_1.1.0      yaml_2.2.1         colorspace_2.0-0  
-#&gt; [65] classInt_0.4-3     memoise_2.0.0      knitr_1.32</code></pre>
+#&gt;  [1] rnaturalearth_0.1.0 httr_1.4.2          jsonlite_1.7.2     
+#&gt;  [4] countrycode_1.2.0   highr_0.8           yaml_2.2.1         
+#&gt;  [7] ggrepel_0.9.1       pillar_1.6.0        lattice_0.20-41    
+#&gt; [10] glue_1.4.2          digest_0.6.27       colorspace_2.0-0   
+#&gt; [13] htmltools_0.5.1.1   pkgconfig_2.0.3     purrr_0.3.4        
+#&gt; [16] scales_1.1.1        intervals_0.15.2    jpeg_0.1-8.1       
+#&gt; [19] tibble_3.1.0        proxy_0.4-25        generics_0.1.0     
+#&gt; [22] farver_2.1.0        ellipsis_0.3.1      cachem_1.0.4       
+#&gt; [25] withr_2.4.1         magrittr_2.0.1      crayon_1.4.1       
+#&gt; [28] memoise_2.0.0       evaluate_0.14       fs_1.5.0           
+#&gt; [31] fansi_0.4.2         xts_0.12.1          class_7.3-18       
+#&gt; [34] FNN_1.1.3           textshaping_0.3.3   tools_4.0.5        
+#&gt; [37] imguR_1.0.3         hms_1.0.0           lifecycle_1.0.0    
+#&gt; [40] stringr_1.4.0       munsell_0.5.0       geogrid_0.1.1      
+#&gt; [43] compiler_4.0.5      pkgdown_1.6.1       e1071_1.7-6        
+#&gt; [46] spacetime_1.2-4     systemfonts_1.0.1   rlang_0.4.10       
+#&gt; [49] classInt_0.4-3      units_0.7-1         grid_4.0.5         
+#&gt; [52] labeling_0.4.2      rmarkdown_2.7       gtable_0.3.0       
+#&gt; [55] codetools_0.2-18    DBI_1.1.1           curl_4.3           
+#&gt; [58] R6_2.5.0            gridExtra_2.3       zoo_1.8-9          
+#&gt; [61] lubridate_1.7.10    knitr_1.32          fastmap_1.1.0      
+#&gt; [64] rgeos_0.5-5         utf8_1.2.1          rprojroot_2.0.2    
+#&gt; [67] ragg_1.1.2          KernSmooth_2.23-18  readr_1.4.0        
+#&gt; [70] desc_1.3.0          stringi_1.5.3       Rcpp_1.0.6         
+#&gt; [73] vctrs_0.3.7         png_0.1-7           tidyselect_1.1.0   
+#&gt; [76] xfun_0.22</code></pre>
 </details>
 </div>
   </div>
