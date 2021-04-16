@@ -3,7 +3,7 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   articles/Spatial-Interpolation-with-climaemet: Spatial-Interpolation-with-climaemet.html
-last_built: 2021-04-16T11:26Z
+last_built: 2021-04-16T13:27Z
 urls:
   reference: https://ropenspain.github.io/climaemet//reference
   article: https://ropenspain.github.io/climaemet//articles
