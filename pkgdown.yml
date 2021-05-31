@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   articles/Spatial-Interpolation-with-climaemet: Spatial-Interpolation-with-climaemet.html
   articles/x01_aemet_stations: x01_aemet_stations.html
-last_built: 2021-05-30T07:59Z
+last_built: 2021-05-31T06:51Z
 urls:
   reference: https://ropenspain.github.io/climaemet//reference
   article: https://ropenspain.github.io/climaemet//articles
